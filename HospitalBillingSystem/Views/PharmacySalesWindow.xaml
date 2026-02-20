@@ -1,0 +1,28 @@
+<Window x:Class="HospitalBillingSystem.Views.PharmacySalesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pharmacy Sales History" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Pharmacy Sales History" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <DataGrid x:Name="dgSales" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" 
+                  SelectionMode="Single" CanUserAddRows="False" AlternatingRowBackground="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sale #" Binding="{Binding SaleNumber}" Width="120"/>
+                <DataGridTextColumn Header="Patient" Binding="{Binding Patient.FullName}" Width="150"/>
+                <DataGridTextColumn Header="Medicine" Binding="{Binding Medicine.Name}" Width="150"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80"/>
+                <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice, StringFormat=₹{0:N2}}" Width="100"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding TotalPrice, StringFormat=₹{0:N2}}" Width="100"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding SaleDate, StringFormat=yyyy-MM-dd}" Width="100"/>
+                <DataGridTextColumn Header="Payment" Binding="{Binding PaymentMethod}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
