@@ -1,0 +1,42 @@
+<Page x:Class="HospitalBillingSystem.Views.LabPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Laboratory Management">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Laboratory Management" FontSize="28" FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20,0,10">
+            <Button Content="New Lab Test" Width="120" Height="35" Margin="0,0,10,0" Click="BtnNewTest_Click" Background="#2196F3" Foreground="White" FontWeight="Bold" Cursor="Hand"/>
+            <Button Content="Refresh" Width="100" Height="35" Margin="10,0,0,0" Click="BtnRefresh_Click" Background="#FF9800" Foreground="White" FontWeight="Bold" Cursor="Hand"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgLabTests" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" 
+                  SelectionMode="Single" CanUserAddRows="False" AlternatingRowBackground="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Test Code" Binding="{Binding TestCode}" Width="100"/>
+                <DataGridTextColumn Header="Test Name" Binding="{Binding TestName}" Width="150"/>
+                <DataGridTextColumn Header="Patient" Binding="{Binding Patient.FullName}" Width="150"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.FullName}" Width="150"/>
+                <DataGridTextColumn Header="Test Date" Binding="{Binding TestDate, StringFormat=yyyy-MM-dd}" Width="100"/>
+                <DataGridTextColumn Header="Cost" Binding="{Binding TestCost, StringFormat=₹{0:N2}}" Width="80"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                <DataGridTemplateColumn Header="Actions" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Update" Width="70" Margin="2" Click="BtnUpdate_Click" Tag="{Binding Id}" Background="#4CAF50" Foreground="White" Cursor="Hand"/>
+                                <Button Content="Delete" Width="60" Margin="2" Click="BtnDelete_Click" Tag="{Binding Id}" Background="#F44336" Foreground="White" Cursor="Hand"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
